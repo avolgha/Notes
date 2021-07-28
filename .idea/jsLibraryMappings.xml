@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{behaviors-b3331eee0c67a6bf34e17b36835bc45c, colors-v2-a94aff3fa54a7b320087cf3759a433c0, default, frameworks-0338fad53ed544a4bdff8c20912b6947, github-8be1b1e60a204aad86b9ee7447cf4941, highlight, highlight.js}" />
-    <includedPredefinedLibrary name="Node.js Core" />
-  </component>
-</project>
