@@ -1,8 +1,10 @@
 build/
 node_modules/
 notes/
-.idea/
+.idea/workspace.xml
+views/index.html
 pnpm-lock.yaml
 style.css
 style.scss
 test.js
+server.js

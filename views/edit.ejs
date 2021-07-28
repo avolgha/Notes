@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit</title>
+</head>
+<body>
+    <form action="http://localhost:6767/save/<%= file %>" method="post">
+        <textarea name="text" id="text" cols="30" rows="10" style="width: <%= bounds.w %>px;height: <%= bounds.h %>px"><%= text %> </textarea>
+        <br><input type="submit" value="Save">
+    </form>
+</body>
+</html>
