@@ -1,6 +1,7 @@
 build/
 node_modules/
 notes/
+.idea/
 pnpm-lock.yaml
 style.css
 style.scss
