@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="behaviors-b3331eee0c67a6bf34e17b36835bc45c" level="application" />
+    <orderEntry type="library" name="github-8be1b1e60a204aad86b9ee7447cf4941" level="application" />
+    <orderEntry type="library" name="frameworks-0338fad53ed544a4bdff8c20912b6947" level="application" />
+    <orderEntry type="library" name="colors-v2-a94aff3fa54a7b320087cf3759a433c0" level="application" />
+    <orderEntry type="library" name="default" level="application" />
+    <orderEntry type="library" name="highlight" level="application" />
+    <orderEntry type="library" name="highlight.js" level="application" />
+  </component>
+</module>

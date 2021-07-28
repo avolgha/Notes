@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notes</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js"></script>
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        #sidenav {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        #sidenav button {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: black;
+            display: block;
+
+            float: left;
+            margin-right: 10px;
+        }
+
+        #main {
+            margin-left: 160px;
+            padding: 0 10px;
+        }
+
+        #sidenav button:hover {
+            background-color: #333;
+        }
+        #sidenav button:active {
+            background-color: #333;
+        }
+        #sidenav button:focus {
+            background-color: #333;
+        }
+
+        @media screen and (max-height: 450px) {
+            #sidenav {padding-top: 15px;}
+            #sidenav button {font-size: 18px;}
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://github.githubassets.com/assets/frameworks-0338fad53ed544a4bdff8c20912b6947.css" />
+    <link rel="stylesheet" href="https://github.githubassets.com/assets/colors-v2-a94aff3fa54a7b320087cf3759a433c0.css" />
+    <link rel="stylesheet" href="https://github.githubassets.com/assets/behaviors-b3331eee0c67a6bf34e17b36835bc45c.css" />
+    <link rel="stylesheet" href="https://github.githubassets.com/assets/github-8be1b1e60a204aad86b9ee7447cf4941.css" />
+</head>
+<body>
+    <div id="sidenav">
+        <!-- gets all .md files from the ipcRenderer and renders them into this list -->
+    </div>
+
+    <div id="main">
+        <h1>Hey!</h1>
+        <span>Select on of the notes to display the content of it here</span>
+    </div>
+
+    <script>
+        const sidenav = document.querySelector('#sidenav');
+        const main    = document.querySelector('#main');
+
+        const httpGet = (url, param) => {
+            return new Promise((resolve, reject) => {
+                const req = new XMLHttpRequest();
+                req.open('GET', url);
+                req.onload = () => {
+                    if (req.status === 200) {
+                        resolve(req.responseText);
+                    } else {
+                        reject(Error(req.statusText));
+                    }
+                };
+                req.onerror = () => {
+                    reject(Error('Network Error'));
+                };
+                req.send({
+                    body: param ?? null
+                });
+            });
+        }
+
+        const capitalize = (text) => text.substr(0, 1).toUpperCase() + text.substr(1);
+
+        const loadNotes = () => {
+            httpGet('http://localhost:6767/get').then(json => {
+                const notes = JSON.parse(json)['notes'];
+                for (let i = 0; i < notes.length; i++) {
+                    const note = notes[i];
+                    const btn = document.createElement('button');
+                    btn.innerHTML = capitalize(note.name);
+                    btn.onclick = () => selectNote(i);
+                    sidenav.appendChild(btn);
+                }
+            });
+        }
+
+        const selectNote = (index) => {
+            const response = httpGet('http://localhost:6767/load/' + index);
+            response.then(result => {
+                const element = document.createElement('span');
+                element.id = 'markdownContainer';
+                element.classList.add('markdown-body', 'entry-content', 'container-lg');
+                element.append(new DOMParser().parseFromString(result, 'text/html').documentElement);
+                main.innerHTML = '';
+                main.appendChild(element);
+            }).catch(error => {
+                main.innerHTML = `<span>Error: ${error}</span>`;
+            });
+        }
+
+        loadNotes();
+
+        setInterval(() => {
+            try {
+                hljs.highlightAll();
+            } catch (e) {}
+        }, 1000);
+    </script>
+</body>
+</html>

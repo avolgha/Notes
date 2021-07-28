@@ -1,0 +1,7 @@
+build/
+node_modules/
+notes/
+pnpm-lock.yaml
+style.css
+style.scss
+test.js
