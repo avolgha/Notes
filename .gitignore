@@ -2,7 +2,7 @@ build/
 node_modules/
 notes/
 .idea/workspace.xml
-views/index.html
+views/*.html
 pnpm-lock.yaml
 style.css
 style.scss
