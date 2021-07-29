@@ -6,10 +6,10 @@ The goal is to manage your Notes. All notes are saved in the ``notes/`` director
 
 ## » What it depends on
 
-* [electron](https://github.com/electron/electron) (`^13.1.7`)
-* [typescript](https://github.com/Microsoft/TypeScript) (`^4.3.5`)
-* [express](https://github.com/expressjs/express) (`^4.17.1`) & [body-parser](https://github.com/expressjs/body-parser) (`^1.19.0`)
-* [markdown-it](https://github.com/markdown-it/markdown-it) (`^12.1.0`)
+* [electron](https://www.npmjs.com/package/electron/v/13.1.7) (`^13.1.7`)
+* [typescript](https://www.npmjs.com/package/typescript/v/4.3.5) (`^4.3.5`)
+* [express](https://www.npmjs.com/package/express/v/4.17.1/) (`^4.17.1`) & [body-parser](https://www.npmjs.com/package/body-parser/v/1.19.0) (`^1.19.0`)
+* [markdown-it](https://www.npmjs.com/package/markdown-it/v/12.1.0) (`^12.1.0`)
 
 ## » ToDo
 
