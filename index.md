@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+## » What is "Notes"?
 
-You can use the [editor on GitHub](https://github.com/avolgha/Notes/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Notes is a Note Manager written with [TypeScript](https://www.typescriptlang.org/) and [Electron](https://www.electronjs.org/).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The goal is to manage your Notes. All notes are saved in the ``notes/`` directory as Markdown-Files
 
-### Markdown
+## » What it depends on
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* [electron](https://github.com/electron/electron) (`^13.1.7`)
+* [typescript](https://github.com/Microsoft/TypeScript) (`^4.3.5`)
+* [express](https://github.com/expressjs/express) (`^4.17.1`) & [body-parser](https://github.com/expressjs/body-parser) (`^1.19.0`)
+* [markdown-it](https://github.com/markdown-it/markdown-it) (`^12.1.0`)
 
-```markdown
-Syntax highlighted code block
+## » ToDo
 
-# Header 1
-## Header 2
-### Header 3
+* [X] display notes on the window
+* [X] backend service
+* [X] Actions Menu
+  * [X] Home-Button
+  * [X] Create Notes
+  * [X] Delete Notes
+  * [X] Edit Notes
+  * [X] Developer actions menu
+    * [X] open dev tools
+    * [X] reload
+* [X] write Notes from the window
+* [X] render HTML with Markdown
+* [ ] Beautify .ejs files in `views/`
 
-- Bulleted
-- List
+## » Support
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/avolgha/Notes/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+If there are any questions, please ask me on discord (`Marius#0686`) 
