@@ -1,10 +1,27 @@
+# worksapce directories
 build/
 node_modules/
 notes/
+release-builds/
+
+# WebStorm configuration of the workspace
 .idea/workspace.xml
-views/*.html
+
+# Views
+views/index.html
+views/edit.html
+views/error.html
+views/keycodetest.html
+
+# Package manager locks
 pnpm-lock.yaml
+yarn.lock
+
+# Styling (currently not in use)
 style.css
 style.scss
+
+# Testing files
 test.js
 server.js
+keycodetest.js

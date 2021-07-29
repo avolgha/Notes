@@ -121,8 +121,6 @@
             });
         }
 
-        const capitalize = (text) => text.substr(0, 1).toUpperCase() + text.substr(1);
-
         const loadNotes = () => {
             httpGet('http://localhost:6767/get').then(json => {
                 const notes = JSON.parse(json)['notes'];
@@ -130,7 +128,7 @@
                     const note = notes[i];
                     const btn = document.createElement('button');
                     btn.classList.add('btn');
-                    btn.innerHTML = capitalize(note.name);
+                    btn.innerHTML = note.name;
                     btn.onclick = () => selectNote(i);
                     sidenav.appendChild(btn);
                 }
@@ -140,10 +138,24 @@
         const selectNote = (index) => {
             const response = httpGet('http://localhost:6767/load/' + index);
             response.then(result => {
+                if (typeof result !== 'string') return;
+
                 const element = document.createElement('span');
                 element.id = 'markdownContainer';
                 element.classList.add('markdown-body', 'entry-content', 'container-lg');
-                element.append(new DOMParser().parseFromString(result, 'text/html').documentElement);
+                element.innerHTML = result
+                    .split('\n')
+                    .map(current => {
+                        if (current.startsWith('<p>') && current.endsWith('</p>') && current.substr('<p>'.length, current.length - '</p>'.length).length > 0) {
+                            return current.substr('<p>'.length, current.length - '</p>'.length);
+                        } else {
+                            return current;
+                        }
+                    })
+                    .map(line => {
+                        return line.replaceAll('&lt;', '<').replaceAll('&gt;', '>');
+                    })
+                    .join('\n');
                 main.innerHTML = '';
                 main.appendChild(element);
 

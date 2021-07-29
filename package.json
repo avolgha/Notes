@@ -6,7 +6,10 @@
   "scripts": {
     "start": "electron .",
     "compile": "tsc",
-    "dev": "tsc && electron ."
+    "dev": "tsc && electron .",
+    "__package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=icon.png --prune=true --out=release-builds",
+    "__package:win": "electron-packager . notes --overwrite --asar=true --platform=win32 --arch=ia32 --icon=icon.png --prune=true --out=release-builds --version-string.CompanyName=MagicInv --version-string.FileDescription=CE --version-string.ProductName=\"Notes\"",
+    "__package:lin": "electron-packager . notes --overwrite --asar=true --platform=linux --arch=x64 --icon=icon.png --prune=true --out=release-builds"
   },
   "author": "Marius",
   "license": "MIT",
@@ -14,6 +17,8 @@
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
     "electron": "^13.1.7",
+    "electron-packager": "^15.3.0",
+    "electron-prompt": "^1.6.2",
     "express": "^4.17.1",
     "markdown-it": "^12.1.0",
     "typescript": "^4.3.5"
@@ -21,6 +26,7 @@
   "devDependencies": {
     "@types/body-parser": "^1.19.1",
     "@types/ejs": "^3.0.7",
+    "@types/electron-prompt": "^1.6.1",
     "@types/express": "^4.17.13",
     "@types/markdown-it": "^12.0.3",
     "@types/node": "^16.4.5"
