@@ -13,6 +13,9 @@ The goal is to manage your Notes. All notes are saved in the ``notes/`` director
 * [markdown-it](https://github.com/markdown-it/markdown-it) (`^12.1.0`)
 </details>
 
+## » Secruity & Risks
+Because the program displays all HTML tags, attacker could execute JavaScript through this, if you open a markdown file that contains malicious code
+
 ## » ToDo
 
 * [X] display notes on the window
@@ -29,6 +32,7 @@ The goal is to manage your Notes. All notes are saved in the ``notes/`` director
 * [X] render HTML with Markdown
 * [ ] Beautify .ejs files in `views/`
 * [ ] Better markdown formatting
+* [ ] Remove JavaScript Executability
 
 ## » Support
 
