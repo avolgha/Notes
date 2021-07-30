@@ -3,8 +3,9 @@ import bodyParser from 'body-parser';
 import {readdirSync, readFileSync, existsSync, writeFileSync} from 'fs';
 import {join} from 'path';
 import markdown from 'markdown-it';
+import {notePath} from './constants';
 
-export const get = () => readdirSync(join(__dirname, '..', 'notes'), {encoding: 'utf8'})
+export const get = () => readdirSync(join(notePath), {encoding: 'utf8'})
   .filter(file => file.endsWith('.md'))
   .map(file => { return {name: file.substr(0, file.length - '.md'.length)}; });
 
@@ -46,7 +47,7 @@ export function startServer() {
 
     // @ts-ignore
     const file = get()[req.params.index].name
-    const content = readFileSync(join(__dirname, '..', 'notes', file + '.md'), {encoding: 'utf8'});
+    const content = readFileSync(join(notePath, file + '.md'), {encoding: 'utf8'});
 
     res.send(markdown().render(content));
 
@@ -56,7 +57,7 @@ export function startServer() {
   server.post('/save/:file', (req, res) => {
     const file = req.params.file;
     getPostData(req, res, content => {
-      const path = join(__dirname, '..', 'notes', file + '.md');
+      const path = join(notePath, file + '.md');
 
       if (existsSync(path)) {
         writeFileSync(path, content.text, {encoding: 'utf8'});

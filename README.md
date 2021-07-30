@@ -31,6 +31,7 @@ Because the program displays all HTML tags, attacker could execute JavaScript th
 * [X] write Notes from the window
 * [X] render HTML with Markdown
 * [ ] Beautify .ejs files in `views/`
+* [ ] Better markdown formatting
 * [ ] Remove JavaScript Executability
 
 ## » Support
