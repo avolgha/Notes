@@ -5,7 +5,7 @@ import {readFileSync, writeFileSync, existsSync, unlinkSync} from 'fs';
 import render from './render';
 import {icon} from './main';
 import {get} from './apiServer';
-import * as path from 'path';
+import {notePath, viewsPath} from './constants';
 
 const build = (name: string, click: (window: BrowserWindow, item: MenuItem) => void, key: string, visible: boolean = true) => {
   const constructor: MenuItemConstructorOptions = {
@@ -23,7 +23,7 @@ export default function buildMenu() {
   return Menu.buildFromTemplate([
     build(
       'Home',
-      (window, item) => window.loadFile(join(__dirname, '..', 'views', 'index.html')),
+      (window, item) => window.loadFile(join(viewsPath, 'index.html')),
       process.platform === 'darwin' ? 'Cmd+H' : 'Ctrl+H'
     ),
     build(
@@ -41,19 +41,19 @@ export default function buildMenu() {
         }, window)
           .then(result => {
             if (result) {
-              const path = join(__dirname, '..', 'notes', result + '.md');
+              const path = join(notePath, result + '.md');
               if (!existsSync(path)) {
                 writeFileSync(path, '# ' + result, {encoding: 'utf8'});
                 window.reload();
               } else {
                 render('error.ejs', { error: `There is already a note with the name "${result}"` });
-                window.loadFile(join(__dirname, '..', 'views', 'error.html'));
+                window.loadFile(join(viewsPath, 'error.html'));
               }
             }
           })
           .catch(error => {
             render('error.ejs', { error });
-            window.loadFile(join(__dirname, '..', 'views', 'error.html'));
+            window.loadFile(join(viewsPath, 'error.html'));
           });
       },
       process.platform === 'darwin' ? 'Cmd+N' : 'Ctrl+N'
@@ -91,7 +91,7 @@ export default function buildMenu() {
             window.webContents.executeJavaScript(`document.getElementById('index').innerHTML`)
               .catch(error => {
                 render('error.ejs', { error: 'Cannot get current index of the file that you want to delete' });
-                window.loadFile(join(__dirname, '..', 'views', 'error.html'));
+                window.loadFile(join(viewsPath, 'error.html'));
               })
               .then(result => {
                 try {
@@ -100,7 +100,7 @@ export default function buildMenu() {
                   if (index >= 0) {
                     const element = get()[index];
 
-                    const path = join(__dirname, '..', 'notes', element.name + '.md');
+                    const path = join(notePath, element.name + '.md');
                     if (existsSync(path)) {
                       prompt({
                         title: 'Note Delete',
@@ -130,15 +130,15 @@ export default function buildMenu() {
                         })
                         .catch(error => {
                           render('error.ejs', { error });
-                          window.loadFile(join(__dirname, '..', 'views', 'error.html'));
+                          window.loadFile(join(viewsPath, 'error.html'));
                         });
                     } else {
                       render('error.ejs', { error: 'This note shouldn\'t be here' });
-                      window.loadFile(join(__dirname, '..', 'views', 'error.html'));
+                      window.loadFile(join(viewsPath, 'error.html'));
                     }
                   } else {
                     render('error.ejs', { error: 'Cannot get current index of the file that you want to delete' });
-                    window.loadFile(join(__dirname, '..', 'views', 'error.html'));
+                    window.loadFile(join(viewsPath, 'error.html'));
                   }
                 } catch (e) {}
               });
@@ -198,7 +198,7 @@ export default function buildMenu() {
             window.webContents.executeJavaScript(`document.getElementById('index').innerHTML`)
               .catch(error => {
                 render('error.ejs', { error: 'Cannot get current index of the editing file' });
-                editWindow.loadFile(join(__dirname, '..', 'views', 'error.html'));
+                editWindow.loadFile(join(viewsPath, 'error.html'));
               })
               .then(result => {
                 try {
@@ -209,17 +209,17 @@ export default function buildMenu() {
 
                     render('edit.ejs', {
                       file: element.name,
-                      text: readFileSync(join(__dirname, '..', 'notes', element.name + '.md'), {encoding: 'utf8'}),
+                      text: readFileSync(join(notePath, element.name + '.md'), {encoding: 'utf8'}),
                       bounds: {
                         w: editWindow.getBounds().width,
                         h: editWindow.getBounds().height
                       }
                     });
 
-                    editWindow.loadFile(join(__dirname, '..', 'views', 'edit.html'));
+                    editWindow.loadFile(join(viewsPath, 'edit.html'));
                   } else {
                     render('error.ejs', { error: 'Cannot get current index of the editing file' });
-                    editWindow.loadFile(join(__dirname, '..', 'views', 'error.html'));
+                    editWindow.loadFile(join(viewsPath, 'error.html'));
                   }
                 } catch (e) {}
               });

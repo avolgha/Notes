@@ -1,8 +1,14 @@
 import {app, BrowserWindow, nativeImage, Menu} from 'electron';
 import {join} from 'path';
+import('./constants').then(module => {
+  module.checkForNotesDir(true);
+  module.checkForViewsDir(true);
+  module.insertViews();
+});
 import render from './render';
 import {startServer} from './apiServer';
 import menu from './menu';
+import {viewsPath} from './constants';
 
 const icon = nativeImage.createFromPath(join(__dirname, '..', 'icon.png'));
 icon.setTemplateImage(true);
@@ -23,7 +29,7 @@ const runApplication = () => {
     minHeight: 613
   });
 
-  render('index.ejs', undefined); window.loadFile(join(__dirname, '..', 'views', 'index.html'));
+  render('index.ejs', undefined); window.loadFile(join(viewsPath, 'index.html'));
 
   Menu.setApplicationMenu(menu());
 
@@ -32,7 +38,9 @@ const runApplication = () => {
 
 app.on('window-all-closed', () => { if (process.platform !== 'darwin') app.quit() ;});
 
-app.whenReady().then(() => {
-  startServer();
-  runApplication();
-});
+setTimeout(() => {
+  app.whenReady().then(() => {
+    startServer();
+    runApplication();
+  });
+}, 5000);

@@ -1,6 +1,7 @@
 import {join} from 'path';
 import {readFileSync, writeFileSync} from 'fs';
-import {render, Data} from 'ejs';
+import {render} from 'ejs';
+import {viewsPath} from './constants';
 
 /**
  * Reads the content of the given file and compiles it content with ejs and then write to a .html file
@@ -13,11 +14,11 @@ export default function renderFunction(path: string, param: any | undefined): vo
   }
 
   const html = render(
-    readFileSync(join(__dirname, '..', 'views', path), {encoding: 'utf8'}),
+    readFileSync(join(viewsPath, path), {encoding: 'utf8'}),
     param
   );
 
-  writeFileSync(join(__dirname, '..', 'views', path.substr(0, path.length - '.ejs'.length) + '.html'), html, {
+  writeFileSync(join(viewsPath, path.substr(0, path.length - '.ejs'.length) + '.html'), html, {
     encoding: 'utf8'
   });
 }

@@ -28,6 +28,7 @@ The goal is to manage your Notes. All notes are saved in the ``notes/`` director
 * [X] write Notes from the window
 * [X] render HTML with Markdown
 * [ ] Beautify .ejs files in `views/`
+* [ ] Better markdown formatting
 
 ## » Support
 
